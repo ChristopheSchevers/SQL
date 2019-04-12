@@ -29,6 +29,6 @@ UPDATE students SET prenom = 'Omer', genre = 'M' WHERE nom = 'Dalor' AND prenom 
 DELETE FROM students WHERE idStudent = '3';
 
 -- Change the contents of the school column so that "1" is replaced by "Brussels" and "2" is replaced by "Charleroi"
--- UPDATE students SET school = school.school FROM students JOIN school ON students.school = school.idschool;
+UPDATE students, school SET students.school = school.school WHERE students.school = school.idschool;
 
 -- Do other manipulations to see if you are well understood
