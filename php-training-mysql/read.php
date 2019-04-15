@@ -6,6 +6,12 @@ $sql = "SELECT * FROM hiking";
 $q = $pdo->query($sql);
 
 $q->setFetchMode(PDO::FETCH_ASSOC);
+
+if(isset($_GET['create'])){
+  $message = "Added!";
+
+  echo $message;
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +34,7 @@ $q->setFetchMode(PDO::FETCH_ASSOC);
       <tbody>
         <?php while ($row = $q->fetch()): ?>
           <tr>
-            <td><?php echo $row['name']; ?></td>
+            <td><?php echo $row['hname']; ?></td>
             <td><?php echo $row['difficulty']; ?></td>
             <td><?php echo $row['distance']; ?></td>
             <td><?php echo $row['duration']; ?></td>

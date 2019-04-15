@@ -5,28 +5,28 @@ include('connect.php');
 // Insert data
 if (isset($_POST['button']) & !empty($_POST))
 {
-	$name = $_POST['name'];
+	$hname = $_POST['hname'];
 	$difficulty = $_POST['difficulty'];
 	$distance = $_POST['distance'];
 	$duration = $_POST['duration'];
-	$heightdiff = $_POST['height_difference'];
+	$height_difference = $_POST['height_difference'];
 
 	$data = [
-		':name' => $name,
-		':difficulty' => $difficulty,
-		':distance' => $distance,
-		':duration' => $duration,
-		':height_difference' => $heightdiff
+		'hname' => $hname,
+		'difficulty' => $difficulty,
+		'distance' => $distance,
+		'duration' => $duration,
+		'height_difference' => $height_difference
 	];
 
-	$sqlInsert = "INSERT INTO `hiking` (`name`, `difficulty`, `distance`, `duration`, `height_difference`) VALUES ($name, $difficulty, $distance, $duration, $heightdiff)";
+	$sqlInsert = "INSERT INTO hiking (hname, difficulty, distance, duration, height_difference) VALUES (:hname, :difficulty, :distance, :duration, :height_difference)";
 
 	$sqlExec = $pdo->prepare($sqlInsert);
-	$sqlExec->execute($data);
+	$inserted = $sqlExec->execute($data);
 
-	header("Location: create.php");
+	
+	header("Location: read.php?create");	
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -41,8 +41,8 @@ if (isset($_POST['button']) & !empty($_POST))
 	<h1>Add</h1>
 	<form action="" method="post">
 		<div>
-			<label for="name">Name</label>
-			<input type="text" name="name" value="">
+			<label for="hname">Name</label>
+			<input type="text" name="hname" value="">
 		</div>
 
 		<div>

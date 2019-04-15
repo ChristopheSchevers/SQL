@@ -22,9 +22,9 @@ if (isset($_POST['insert']))
     $low = $_POST['low'];
 
     $data = [
-        ':city' => $city,
-        ':high' => $high,
-        ':low' => $low,
+        'city' => $city,
+        'high' => $high,
+        'low' => $low,
     ];
 
     $sqlInsert = "INSERT INTO Weather (city, high, low) VALUES (:city, :high, :low)";

@@ -9,6 +9,7 @@
     try 
     {
     $pdo = new PDO("mysql:host=$servername; dbname=$db; charset=utf8mb4",$username, $password);
+    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(PDOException $e)
     {
