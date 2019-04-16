@@ -8,8 +8,12 @@ $q = $pdo->query($sql);
 $q->setFetchMode(PDO::FETCH_ASSOC);
 
 if(isset($_GET['create'])){
-  $message = "Added!";
+  $message = "Hike added to list!";
+  echo $message;
+}
 
+if(isset($_GET['update'])){
+  $message = "Hike updated!";
   echo $message;
 }
 ?>
@@ -39,6 +43,7 @@ if(isset($_GET['create'])){
             <td><?php echo $row['distance']; ?></td>
             <td><?php echo $row['duration']; ?></td>
             <td><?php echo $row['height_difference']; ?></td>
+            <td><a href="update.php?id=<?php echo $row['ID'] ?>">Edit</a></td>
           </tr>
         <?php endwhile; ?>
       </tbody>

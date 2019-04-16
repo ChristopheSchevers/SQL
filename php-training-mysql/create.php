@@ -3,7 +3,7 @@
 include('connect.php');
 
 // Insert data
-if (isset($_POST['button']) & !empty($_POST))
+if (isset($_POST['button']) && !empty($_POST))
 {
 	$hname = $_POST['hname'];
 	$difficulty = $_POST['difficulty'];
@@ -12,20 +12,20 @@ if (isset($_POST['button']) & !empty($_POST))
 	$height_difference = $_POST['height_difference'];
 
 	$data = [
-		'hname' => $hname,
-		'difficulty' => $difficulty,
-		'distance' => $distance,
-		'duration' => $duration,
+		'hname' 		=> $hname,
+		'difficulty' 	=> $difficulty,
+		'distance' 		=> $distance,
+		'duration' 		=> $duration,
 		'height_difference' => $height_difference
 	];
 
 	$sqlInsert = "INSERT INTO hiking (hname, difficulty, distance, duration, height_difference) VALUES (:hname, :difficulty, :distance, :duration, :height_difference)";
 
 	$sqlExec = $pdo->prepare($sqlInsert);
-	$inserted = $sqlExec->execute($data);
+	$sqlExec->execute($data);
 
 	
-	header("Location: read.php?create");	
+	header('Location: read.php?create');	
 }
 ?>
 
