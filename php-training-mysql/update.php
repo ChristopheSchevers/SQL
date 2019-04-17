@@ -3,13 +3,14 @@
 	$id = $_GET['id'];
 
 	// Connect from connect.php file
-	include('connect.php');
-
+	require_once('connect.php');
+	
+	
 	// Fetched data from DB based on id
 	$sql = "SELECT * FROM hiking WHERE ID = :ID";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute([':ID'=>$id]);
-
+	
 	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 	{
 		$hname = $row['hname'];
@@ -18,29 +19,34 @@
 		$duration = $row['duration'];
 		$height_difference = $row['height_difference'];
 	}
-
+	
 	// Update data
-	if(isset($_GET['button'])) {		
-		$new_hname = $_POST['hname'];
-		$new_difficulty = $_POST['difficulty'];
-		$new_distance = $_POST['distance'];
-		$new_duration = $_POST['duration'];
-		$new_height_difference = $_POST['height_difference'];
-		
-		$data = [
-			'hname' 		=> $new_hname,
-			'difficulty' 	=> $new_difficulty,
-			'distance' 		=> $new_distance,
-			'duration' 		=> $new_duration,
-			'height_difference' => $new_height_difference
-		];
-		
-		$sqlUpdate = "UPDATE hiking SET hname = :hname, difficulty = :difficulty, distance = :distance, duration = :duration, height_difference = :height_difference WHERE ID = :ID";
-		
-		$upstmt = $pdo->prepare($sqlUpdate);
-		$upstmt->execute($data);
+	if(isset($_POST['button'])) {		
+		try {
+			$hname = $_POST['hname'];
+			$difficulty = $_POST['difficulty'];
+			$distance = $_POST['distance'];
+			$duration = $_POST['duration'];
+			$height_difference = $_POST['height_difference'];
 
-		header('Location: read.php?update');
+			$update = [
+				'ID' 	=> $id,
+				'hike' 	=> $hname,
+				'diff' 	=> $difficulty,
+				'dist' 	=> $distance,
+				'dur' 	=> $duration,
+				'h_diff' => $height_difference
+			];
+
+			$upsql = "UPDATE hiking SET hname=:hike, difficulty=:diff, distance=:dist, duration=:dur, height_difference=:h_diff WHERE ID=:ID";
+			$upstmt = $pdo->prepare($upsql);
+			$upstmt->execute($update);
+
+			header('Location: read.php?update');
+		}
+		catch(PDOException $e){
+			echo 'Error: '. $e->getMessage();
+		}
 	}
 ?>
 

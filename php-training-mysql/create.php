@@ -23,7 +23,6 @@ if (isset($_POST['button']) && !empty($_POST))
 
 	$sqlExec = $pdo->prepare($sqlInsert);
 	$sqlExec->execute($data);
-
 	
 	header('Location: read.php?create');	
 }
