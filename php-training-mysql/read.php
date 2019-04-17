@@ -44,6 +44,7 @@
         <th>Distance(km)</th>
         <th>Duration(min)</th>
         <th>Height Difference(m)</th>
+        <th>Available</th>
       </thead>
       <tbody>
         <?php while ($row = $q->fetch()): ?>
@@ -53,11 +54,13 @@
             <td><?php echo $row['distance']; ?></td>
             <td><?php echo $row['duration']; ?></td>
             <td><?php echo $row['height_difference']; ?></td>
-            <td><a href="update.php?id=<?php echo $row['ID'] ?>">Edit</a></td>
-            <td><a href="delete.php?id=<?php echo $row['ID'] ?>">Delete</a></td>
+            <td><?php if($row['available'] == 0){echo 'no';}else{echo 'yes';} ?></td>
+            <td><a href="update.php?id=<?php echo $row['ID']; ?>">Edit</a></td>
+            <td><a href="delete.php?id=<?php echo $row['ID']; ?>">Delete</a></td>
           </tr>
         <?php endwhile; ?>
       </tbody>
     </table>
+    <a href="create.php">Add hike</a>
   </body>
 </html>

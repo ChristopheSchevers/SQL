@@ -11,16 +11,18 @@
 			$distance = $_POST['distance'];
 			$duration = $_POST['duration'];
 			$height_difference = $_POST['height_difference'];
+			$available = $_POST['available'];
 		
 			$data = [
 				'hname' 		=> $hname,
 				'difficulty' 	=> $difficulty,
 				'distance' 		=> $distance,
 				'duration' 		=> $duration,
-				'height_difference' => $height_difference
+				'height_difference' => $height_difference,
+				'available'		=> $available
 			];
 		
-			$sqlInsert = "INSERT INTO hiking (hname, difficulty, distance, duration, height_difference) VALUES (:hname, :difficulty, :distance, :duration, :height_difference)";
+			$sqlInsert = "INSERT INTO hiking (hname, difficulty, distance, duration, height_difference, available) VALUES (:hname, :difficulty, :distance, :duration, :height_difference, :available)";
 		
 			$sqlExec = $pdo->prepare($sqlInsert);
 			$sqlExec->execute($data);
@@ -62,15 +64,22 @@
 
 		<div>
 			<label for="distance">Distance</label>
-			<input type="text" name="distance" value="">
+			<input type="number" name="distance" value="">
 		</div>
 		<div>
 			<label for="duration">Duration</label>
-			<input type="text" name="duration" value="">
+			<input type="number" name="duration" value="">
 		</div>
 		<div>
 			<label for="height_difference">Height difference</label>
-			<input type="text" name="height_difference" value="">
+			<input type="number" name="height_difference" value="">
+		</div>
+		<div>
+			<label for="available">Available</label>
+			<select name="available">
+				<option value=0>no</option>
+				<option value=1>yes</option>
+			</select>
 		</div>
 		<button type="submit" name="button">Send</button>
 	</form>

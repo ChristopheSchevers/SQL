@@ -18,6 +18,7 @@
 			$distance = $row['distance'];
 			$duration = $row['duration'];
 			$height_difference = $row['height_difference'];
+			$available = $row['available'];
 		}
 	}
 	catch(PDOException $e){
@@ -32,6 +33,7 @@
 			$distance = $_POST['distance'];
 			$duration = $_POST['duration'];
 			$height_difference = $_POST['height_difference'];
+			$available = $_POST['available'];
 
 			$update = [
 				'ID' 	=> $id,
@@ -39,10 +41,11 @@
 				'diff' 	=> $difficulty,
 				'dist' 	=> $distance,
 				'dur' 	=> $duration,
-				'h_diff' => $height_difference
+				'h_diff' => $height_difference,
+				'avail'	=> $available
 			];
 
-			$upsql = "UPDATE hiking SET hname=:hike, difficulty=:diff, distance=:dist, duration=:dur, height_difference=:h_diff WHERE ID=:ID";
+			$upsql = "UPDATE hiking SET hname=:hike, difficulty=:diff, distance=:dist, duration=:dur, height_difference=:h_diff, available=:avail WHERE ID=:ID";
 			$upstmt = $pdo->prepare($upsql);
 			$upstmt->execute($update);
 
@@ -83,15 +86,22 @@
 		
 		<div>
 			<label for="distance">Distance</label>
-			<input type="text" name="distance" value="<?php echo $distance ?>">
+			<input type="number" name="distance" value="<?php echo $distance ?>">
 		</div>
 		<div>
 			<label for="duration">Duration</label>
-			<input type="duration" name="duration" value="<?php echo $duration ?>">
+			<input type="number" name="duration" value="<?php echo $duration ?>">
 		</div>
 		<div>
 			<label for="height_difference">Height difference</label>
-			<input type="text" name="height_difference" value="<?php echo $height_difference ?>">
+			<input type="number" name="height_difference" value="<?php echo $height_difference ?>">
+		</div>
+		<div>
+			<label for="available">Available</label>
+			<select name="available">
+				<option value=0 <?php if($available == O){echo 'selected';} ?>>no</option>
+				<option value=1 <?php if($available == O){echo 'selected';} ?>>yes</option>
+			</select>
 		</div>
 		<button type="submit" name="button">Send</button>
 	</form>
