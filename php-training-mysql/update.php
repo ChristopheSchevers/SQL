@@ -5,19 +5,23 @@
 	// Connect from connect.php file
 	require_once('connect.php');
 	
-	
-	// Fetched data from DB based on id
-	$sql = "SELECT * FROM hiking WHERE ID = :ID";
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute([':ID'=>$id]);
-	
-	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
-	{
-		$hname = $row['hname'];
-		$difficulty = $row['difficulty'];
-		$distance = $row['distance'];
-		$duration = $row['duration'];
-		$height_difference = $row['height_difference'];
+	try{
+		// Fetched data from DB based on id
+		$sql = "SELECT * FROM hiking WHERE ID = :ID";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute([':ID'=>$id]);
+		
+		while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+		{
+			$hname = $row['hname'];
+			$difficulty = $row['difficulty'];
+			$distance = $row['distance'];
+			$duration = $row['duration'];
+			$height_difference = $row['height_difference'];
+		}
+	}
+	catch(PDOException $e){
+		echo 'Error: '. $e->getMessage();
 	}
 	
 	// Update data

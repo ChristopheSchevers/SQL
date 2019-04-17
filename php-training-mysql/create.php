@@ -1,31 +1,36 @@
 <?php
-// Connect from connect.php file
-include('connect.php');
+	// Connect from connect.php file
+	include('connect.php');
 
-// Insert data
-if (isset($_POST['button']) && !empty($_POST))
-{
-	$hname = $_POST['hname'];
-	$difficulty = $_POST['difficulty'];
-	$distance = $_POST['distance'];
-	$duration = $_POST['duration'];
-	$height_difference = $_POST['height_difference'];
-
-	$data = [
-		'hname' 		=> $hname,
-		'difficulty' 	=> $difficulty,
-		'distance' 		=> $distance,
-		'duration' 		=> $duration,
-		'height_difference' => $height_difference
-	];
-
-	$sqlInsert = "INSERT INTO hiking (hname, difficulty, distance, duration, height_difference) VALUES (:hname, :difficulty, :distance, :duration, :height_difference)";
-
-	$sqlExec = $pdo->prepare($sqlInsert);
-	$sqlExec->execute($data);
-	
-	header('Location: read.php?create');	
-}
+	// Insert data
+	if (isset($_POST['button']) && !empty($_POST))
+	{
+		try {
+			$hname = $_POST['hname'];
+			$difficulty = $_POST['difficulty'];
+			$distance = $_POST['distance'];
+			$duration = $_POST['duration'];
+			$height_difference = $_POST['height_difference'];
+		
+			$data = [
+				'hname' 		=> $hname,
+				'difficulty' 	=> $difficulty,
+				'distance' 		=> $distance,
+				'duration' 		=> $duration,
+				'height_difference' => $height_difference
+			];
+		
+			$sqlInsert = "INSERT INTO hiking (hname, difficulty, distance, duration, height_difference) VALUES (:hname, :difficulty, :distance, :duration, :height_difference)";
+		
+			$sqlExec = $pdo->prepare($sqlInsert);
+			$sqlExec->execute($data);
+			
+			header('Location: read.php?create');
+		}
+		catch(PDOException $e){
+			echo 'Error: '. $e->getMessage();
+		}
+	}
 ?>
 
 <!DOCTYPE html>

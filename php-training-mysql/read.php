@@ -1,21 +1,31 @@
 <?php
-include('connect.php');
+  include('connect.php');
 
-// Get data
-$sql = "SELECT * FROM hiking";
-$q = $pdo->query($sql);
+  // Get data
+  try{
+    $sql = "SELECT * FROM hiking";
+    $q = $pdo->query($sql);
+  
+    $q->setFetchMode(PDO::FETCH_ASSOC);
+  }
+  catch(PDOException $e){
+    echo 'Error: '. $e->getMessage();
+  }
 
-$q->setFetchMode(PDO::FETCH_ASSOC);
+  if(isset($_GET['create'])){
+    $message = "Hike added to list!";
+    echo $message;
+  }
 
-if(isset($_GET['create'])){
-  $message = "Hike added to list!";
-  echo $message;
-}
+  if(isset($_GET['update'])){
+    $message = "Hike updated!";
+    echo $message;
+  }
 
-if(isset($_GET['update'])){
-  $message = "Hike updated!";
-  echo $message;
-}
+  if(isset($_GET['delete'])){
+    $message = "Hike deleted successfully!";
+    echo $message;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +54,7 @@ if(isset($_GET['update'])){
             <td><?php echo $row['duration']; ?></td>
             <td><?php echo $row['height_difference']; ?></td>
             <td><a href="update.php?id=<?php echo $row['ID'] ?>">Edit</a></td>
+            <td><a href="delete.php?id=<?php echo $row['ID'] ?>">Delete</a></td>
           </tr>
         <?php endwhile; ?>
       </tbody>
