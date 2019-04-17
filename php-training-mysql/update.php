@@ -26,7 +26,7 @@
 	}
 	
 	// Update data
-	if(isset($_POST['button'])) {		
+	if(isset($_POST['button']) && !empty($_POST)) {		
 		try {
 			$hname = $_POST['hname'];
 			$difficulty = $_POST['difficulty'];

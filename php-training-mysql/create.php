@@ -1,6 +1,6 @@
 <?php
 	// Connect from connect.php file
-	include('connect.php');
+	require_once('connect.php');
 
 	// Insert data
 	if (isset($_POST['button']) && !empty($_POST))
