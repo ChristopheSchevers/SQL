@@ -15,7 +15,7 @@ catch(PDOException $e)
 }
 
 // Insert data
-if (isset($_POST['insert']))
+if (isset($_POST['insert']) && !empty($_POST))
 {
     $city = $_POST['city'];
     $high = $_POST['high'];
@@ -35,18 +35,18 @@ if (isset($_POST['insert']))
     header("Location: index.php");
 }
 
-// Delete checked
-$todelete = $_POST['delete-btn'];
-$sqlDel = $pdo->prepare("DELETE FROM Weather WHERE id = ?");
-foreach ($tdelete as $id)
-    $sqlDel->execute($id);
-
 // Get data
 $sql = "SELECT * FROM Weather";
 $q = $pdo->query($sql);
 
 $q->setFetchMode(PDO::FETCH_ASSOC);
 
+// Delete checked
+$todelete = $_POST['delete-btn'];
+$sqlDel = $pdo->prepare("DELETE FROM Weather WHERE id = ?");
+foreach ($todelete as $id){
+    $sqlDel->execute($id);
+}
 ?>
 
 <!DOCTYPE html>
@@ -77,9 +77,9 @@ $q->setFetchMode(PDO::FETCH_ASSOC);
                 </tbody>
             </table>
             <form method="post" action="">
-                <input type="text" name="city" required="required">
-                <input type="number" name="high" required="required">
-                <input type="number" name="low" required="required">
+                <input type="text" name="city">
+                <input type="number" name="high">
+                <input type="number" name="low">
                 <input type="submit" name="insert" value="Submit">
                 <input type="submit" name="delete-btn" value="Delete checked">
             </form>
