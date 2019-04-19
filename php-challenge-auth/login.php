@@ -22,7 +22,7 @@ try
 
             $data = [
                 'username' => $username,
-                'password' => $password
+                'password' => sha1($password)
             ];
 
             $query = "SELECT * FROM user WHERE username = :username AND password = :password";
