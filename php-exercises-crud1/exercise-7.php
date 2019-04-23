@@ -13,6 +13,7 @@ try{
         return $value;
     }
 
+    // Function to check if value is not empty, then it will add Card Number to the code
     function showNumber($value){
         if(!empty($value)){
             return '&emsp; Card Number: '.$value;
