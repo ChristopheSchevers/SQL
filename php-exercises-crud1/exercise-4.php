@@ -1,5 +1,16 @@
 <?php
+include('connect.php');
 
+try{
+    $sql = "SELECT * FROM clients WHERE card = 1";
+    $q = $pdo->query($sql);
+
+    $q->setFetchMode(PDO::FETCH_ASSOC);
+}
+catch(PDOException $e){
+    echo 'Error: '. $e->getMessage();
+    die();
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,14 +23,23 @@
     <title>Colyseum</title>
 </head>
     <body>
-        <div class="container mt-3">
-            <a href="exercise-1.php" class="btn btn-primary">Exercise 1</a>
-            <a href="exercise-2.php" class="btn btn-primary">Exercise 2</a>
-            <a href="exercise-3.php" class="btn btn-primary">Exercise 3</a>
-            <a href="exercise-4.php" class="btn btn-primary">Exercise 4</a>
-            <a href="exercise-5.php" class="btn btn-primary">Exercise 5</a>
-            <a href="exercise-6.php" class="btn btn-primary">Exercise 6</a>
-            <a href="exercise-7.php" class="btn btn-primary">Exercise 7</a>
+        <div class="container">
+            <a href="index.php" class="btn btn-success">Go back</a>
+            <h1>Customers with loyalty card</h1>
+            <table class="table">
+                <thead>
+                    <th scope="col">First name</th>
+                    <th scope="col">Surname</th>
+                </thead>
+                <tbody>
+                    <?php while($row = $q->fetch()): ?>
+                    <tr>
+                        <td scope="row"><?php echo $row['firstName']; ?></td>
+                        <td><?php echo $row['lastName']; ?></td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
         </div>
 
         <!-- Bootstrap scripts -->
