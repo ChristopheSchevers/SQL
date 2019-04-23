@@ -16,6 +16,8 @@
             <a href="exercise-5.php" class="btn btn-primary">Exercise 5</a>
             <a href="exercise-6.php" class="btn btn-primary">Exercise 6</a>
             <a href="exercise-7.php" class="btn btn-primary">Exercise 7</a>
+            <a href="exercise-8.php" class="btn btn-primary">Exercise 8</a>
+            <a href="exercise-9.php" class="btn btn-primary">Exercise 9</a>
         </div>
 
         <!-- Bootstrap scripts -->

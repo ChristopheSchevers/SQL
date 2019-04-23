@@ -30,14 +30,14 @@ catch(PDOException $e){
                     <h1 class="card-title">Name starting with M</h1>
                     <table class="table">
                         <thead>
-                            <th scope="col">First name</th>
-                            <th scope="col">Surname</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">First Name</th>
                         </thead>
                         <tbody>
                             <?php while($row = $q->fetch()): ?>
                             <tr>
-                                <td scope="row"><?php echo $row['firstName']; ?></td>
-                                <td><?php echo $row['lastName']; ?></td>
+                                <td scope="row"><?php echo $row['lastName']; ?></td>
+                                <td><?php echo $row['firstName']; ?></td>
                             </tr>
                             <?php endwhile; ?>
                         </tbody>
