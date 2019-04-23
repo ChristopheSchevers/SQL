@@ -1,21 +1,8 @@
 <?php
-// DB variables
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$db = "weatherapp";
-
-// Establish connection with DB
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$db;charset=utf8mb4", $username, $password);
-}
-catch(PDOException $e)
-{
-    die ("Connection failed: ". $e->getMessage());
-}
+include('connect.php');
 
 // Insert data
-if (isset($_POST['insert']) && !empty($_POST))
+if (isset($_POST['insert']))
 {
     $city = $_POST['city'];
     $high = $_POST['high'];
@@ -41,12 +28,7 @@ $q = $pdo->query($sql);
 
 $q->setFetchMode(PDO::FETCH_ASSOC);
 
-// Delete checked
-$todelete = $_POST['delete-btn'];
-$sqlDel = $pdo->prepare("DELETE FROM Weather WHERE id = ?");
-foreach ($todelete as $id){
-    $sqlDel->execute($id);
-}
+$pdo = null;
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +53,7 @@ foreach ($todelete as $id){
                             <td><?php echo htmlspecialchars($row['city']); ?></td>
                             <td><?php echo htmlspecialchars($row['high']); ?></td>
                             <td><?php echo htmlspecialchars($row['low']); ?></td>
-                            <td><input type="checkbox" name="deleterow[]" value=""></td>
+                            <td><input type="checkbox" name="selector[]" value=""></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
@@ -81,7 +63,7 @@ foreach ($todelete as $id){
                 <input type="number" name="high">
                 <input type="number" name="low">
                 <input type="submit" name="insert" value="Submit">
-                <input type="submit" name="delete-btn" value="Delete checked">
+                <a href="delete.php">Delete selected</a>
             </form>
         </div>
     </body>
