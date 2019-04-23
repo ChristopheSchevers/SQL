@@ -53,7 +53,8 @@ $pdo = null;
                             <td><?php echo htmlspecialchars($row['city']); ?></td>
                             <td><?php echo htmlspecialchars($row['high']); ?></td>
                             <td><?php echo htmlspecialchars($row['low']); ?></td>
-                            <td><input type="checkbox" name="selector[]" value=""></td>
+                            <td><a href="delete.php?id=<?php echo $row['id'] ?>">Delete</a></td>
+                            <!-- <td><input type="checkbox" name="selector[]" value=""></td> -->
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
@@ -62,8 +63,7 @@ $pdo = null;
                 <input type="text" name="city">
                 <input type="number" name="high">
                 <input type="number" name="low">
-                <input type="submit" name="insert" value="Submit">
-                <a href="delete.php">Delete selected</a>
+                <input type="submit" name="insert" value="Submit">                
             </form>
         </div>
     </body>

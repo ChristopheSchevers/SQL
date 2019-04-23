@@ -2,8 +2,18 @@
 include('connect.php');
 
 // Delete checked
-if(isset($_POST['delete'])){
-    $todelete = $_POST['selector'];
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $sqlDel = "DELETE FROM Weather WHERE id = :id";
+
+    $stmtDel = $pdo->prepare($sqlDel);
+    $stmtDel->bindParam(':id', $id);
+    $stmtDel->execute();
+
+    header('location: index.php');
+
+
+    /*$todelete = $_POST['selector'];
     $N = count($todelete);
     var_dump($N);
     for($i=0; $i < $N; $i++) {
@@ -12,6 +22,6 @@ if(isset($_POST['delete'])){
         $sqlDel->execute();
     }
     header("Location: index.php");
-    $pdo = null;
+    $pdo = null;*/
 }
 ?>
