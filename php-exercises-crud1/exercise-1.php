@@ -25,21 +25,25 @@ catch(PDOException $e){
     <body>
         <div class="container">
             <a href="index.php" class="btn btn-success">Go back</a>
-            <h1>All customers</h1>
-            <table class="table">
-                <thead>
-                    <th scope="col">First name</th>
-                    <th scope="col">Surname</th>
-                </thead>
-                <tbody>
-                    <?php while($row = $q->fetch()): ?>
-                    <tr>
-                        <td scope="row"><?php echo $row['firstName']; ?></td>
-                        <td><?php echo $row['lastName']; ?></td>
-                    </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">All customers</h1>
+                    <table class="table">
+                        <thead>
+                            <th scope="col">First name</th>
+                            <th scope="col">Surname</th>
+                        </thead>
+                        <tbody>
+                            <?php while($row = $q->fetch()): ?>
+                            <tr>
+                                <td scope="row"><?php echo $row['firstName']; ?></td>
+                                <td><?php echo $row['lastName']; ?></td>
+                            </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- Bootstrap scripts -->

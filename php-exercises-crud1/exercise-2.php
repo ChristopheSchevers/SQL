@@ -25,19 +25,23 @@ catch(PDOException $e){
     <body>
         <div class="container">
             <a href="index.php" class="btn btn-success">Go back</a>
-            <h1>All show types</h1>
-            <table class="table">
-                <thead>
-                    <th scope="col">Show Type</th>
-                </thead>
-                <tbody>
-                    <?php while($row = $q->fetch()): ?>
-                    <tr>
-                        <td scope="row"><?php echo $row['type']; ?></td>
-                    </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">All show types</h1>
+                    <table class="table">
+                        <thead>
+                            <th scope="col">Show Type</th>
+                        </thead>
+                        <tbody>
+                            <?php while($row = $q->fetch()): ?>
+                            <tr>
+                                <td scope="row"><?php echo $row['type']; ?></td>
+                            </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- Bootstrap scripts -->

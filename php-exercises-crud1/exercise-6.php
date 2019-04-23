@@ -31,7 +31,7 @@ catch(PDOException $e){
                     <ul class="list-group list-group-flush">
                         <?php while($row = $q->fetch()): ?>
                         <li class="list-group-item">
-                            <?php echo $row['title'].' by '.$row['performer'].', '.$row['date'].' at '.$row['startTime'] ?>
+                            <?php echo $row['title'].' by '.$row['performer'].', '.$row['date'].' at '.$row['startTime']; ?>
                         </li>
                         <?php endwhile; ?>
                     </ul>

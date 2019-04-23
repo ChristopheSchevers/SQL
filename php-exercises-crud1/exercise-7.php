@@ -2,10 +2,22 @@
 include('connect.php');
 
 try{
-    $sql = "SELECT * FROM shows ORDER BY title ASC";
+    $sql = "SELECT * FROM clients";
     $q = $pdo->query($sql);
 
     $q->setFetchMode(PDO::FETCH_ASSOC);
+
+    // Function to convert numeric booleans to yes and no
+    function yesNo(&$value){
+        $value = $value == true ? 'Yes' : 'No';
+        return $value;
+    }
+
+    function showNumber($value){
+        if(!empty($value)){
+            return '&emsp; Card Number: '.$value;
+        }
+    }
 }
 catch(PDOException $e){
     echo 'Error: '. $e->getMessage();
@@ -31,7 +43,9 @@ catch(PDOException $e){
                     <ul class="list-group list-group-flush">
                         <?php while($row = $q->fetch()): ?>
                         <li class="list-group-item">
-                            <?php echo $row['title'].' by '.$row['performer'].', '.$row['date'].' at '.$row['startTime'] ?>
+                            <?php 
+                            echo 'Name: '.$row['lastName'].'&emsp; First Name: '.$row['firstName'].'&emsp; Date of Birth: '.$row['birthDate'].'&emsp; Loyalty Card: '.yesNo($row['card']).showNumber($row['cardNumber']); 
+                            ?>
                         </li>
                         <?php endwhile; ?>
                     </ul>
