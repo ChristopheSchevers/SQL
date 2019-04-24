@@ -3,13 +3,20 @@
     require_once('connect.php');
 
     // Insert data
-    if(isset($_POST['create-btn']) && !empty($_POST)){
+    if(isset($_POST['create-btn'])){
         try{
             $fName = $_POST['firstName'];
             $lName = $_POST['lastName'];
             $bDate = $_POST['birthDate'];
             $card = $_POST['card'];
             $cNumber = $_POST['cardNumber'];
+
+            if($card == 'on'){
+                $card = 1;
+            } else {
+                $card = 0;
+                $cNumber = NULL;
+            }
 
             $data = [
                 'firstName' => $fName,
@@ -57,12 +64,12 @@
                         <input type="date" name="birthDate">
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="checkBox" checked="checked">
+                        <input type="checkbox" class="form-check-input" id="checkBox" name="card">
                         <label class="form-check-label" for="checkBox">Loyalty Card</label>
                     </div>
                     <div class="form-group">
                         <label for="cardNumber">Loyalty Card Number</label>
-                        <input type="number" id="checkTxt" name="cardNumber">
+                        <input type="number" id="checkTxt" name="cardNumber" disabled>
                     </div>
                     <input type="submit" name="create-btn" value="Add">
                 </form>
