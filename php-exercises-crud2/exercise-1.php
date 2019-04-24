@@ -51,13 +51,15 @@
     <div class="container text-center">
         <div class="card col-8 offset-2 mt-5">
             <h2 class="card-title">Add a customer</h2>
-            <div class="card-body d-flex align-items-center">
+            <div class="card-body d-flex align-items-center justify-content-center">
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
                         <input type="text" name="firstName">
+                    </div>
+                    <div class="form-group">
                         <label for="lastName">Last Name</label>
-                        <input type="text" name="lastName">
+                        <input type="text" name="lastName">                        
                     </div>
                     <div class="form-group">
                         <label for="birthDate">Date of Birth</label>

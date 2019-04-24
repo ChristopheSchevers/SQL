@@ -67,7 +67,7 @@
     <div class="container text-center">
         <div class="card col-8 offset-2 mt-5">
             <h2 class="card-title">Add a customer</h2>
-            <div class="card-body d-flex align-items-center">
+            <div class="card-body d-flex align-items-center justify-content-center">
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
@@ -92,9 +92,9 @@
                         <label for="newCard">New card number</label>
                         <input type="number" id="newTxt" name="newCard">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-flex justify-content-center">
                         <label for="cardType">Card type</label>
-                        <select class="form-control" name="cardSelect" id="cardSelect">
+                        <select class="form-control col-6" name="cardSelect" id="cardSelect">
                             <option value=""></option>
                             <option value="1">Loyalty</option>
                             <option value="2">Big family</option>
