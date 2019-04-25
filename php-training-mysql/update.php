@@ -70,7 +70,7 @@
 	<form action="" method="post">
 		<div>
 			<label for="name">Name</label>
-			<input type="text" name="hname" value="<?php echo $hname ?>">
+			<input type="text" name="hname" value="<?php echo $hname; ?>">
 		</div>
 
 		<div>
@@ -86,15 +86,15 @@
 		
 		<div>
 			<label for="distance">Distance</label>
-			<input type="number" name="distance" value="<?php echo $distance ?>">
+			<input type="number" name="distance" value="<?php echo $distance; ?>">
 		</div>
 		<div>
 			<label for="duration">Duration</label>
-			<input type="number" name="duration" value="<?php echo $duration ?>">
+			<input type="number" name="duration" value="<?php echo $duration; ?>">
 		</div>
 		<div>
 			<label for="height_difference">Height difference</label>
-			<input type="number" name="height_difference" value="<?php echo $height_difference ?>">
+			<input type="number" name="height_difference" value="<?php echo $height_difference; ?>">
 		</div>
 		<div>
 			<label for="available">Available</label>

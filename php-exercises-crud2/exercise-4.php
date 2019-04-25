@@ -2,8 +2,8 @@
     // Connect from connect.php file
     require_once('connect.php');
 
-    // Insert data
-    if(isset($_POST['create-btn'])){
+    // Update data
+    if(isset($_POST['edit-btn'])){
         try{
             $fName = $_POST['firstName'];
             $lName = $_POST['lastName'];
@@ -50,30 +50,30 @@
 <body>
     <div class="container text-center">
         <div class="card col-8 offset-2 mt-5">
-            <h2 class="card-title">Add a customer</h2>
+            <h2 class="card-title">Edit a customer</h2>
             <div class="card-body d-flex align-items-center justify-content-center">
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
-                        <input type="text" name="firstName">
+                        <input type="text" name="firstName" id="firstName" value="<?php echo $fName; ?>">
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
-                        <input type="text" name="lastName">                        
+                        <input type="text" name="lastName" id="lastName" value="<?php echo $lName; ?>">                        
                     </div>
                     <div class="form-group">
                         <label for="birthDate">Date of Birth</label>
-                        <input type="date" name="birthDate">
+                        <input type="date" name="birthDate" value="<?php echo $bDate; ?>">
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="checkBox" name="card">
+                        <input type="checkbox" class="form-check-input" id="checkBox" name="card" value="<?php echo $card; ?>">
                         <label class="form-check-label" for="checkBox">Loyalty Card</label>
                     </div>
                     <div class="form-group">
                         <label for="cardNumber">Loyalty Card Number</label>
-                        <input type="number" id="checkTxt" name="cardNumber" disabled>
+                        <input type="number" id="checkTxt" name="cardNumber" disabled value="<?php echo $cNumber; ?>">
                     </div>
-                    <input type="submit" name="create-btn" value="Add">
+                    <input type="submit" name="edit-btn" value="Edit">
                 </form>
             </div>
         </div>
@@ -84,8 +84,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
-    <!-- Code to enable card number input when checked -->
     <script type="text/javascript">
+        // Code to enable card number input when checked
         $("#checkBox").change(function(){
             var state = this.checked;
             if(state){
